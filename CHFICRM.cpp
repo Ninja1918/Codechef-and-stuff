@@ -9,51 +9,55 @@ int32_t main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t, n, input;
+    int t, n, input, fiv, ten, fif;
     map<int, int> have;// Creates a map of key integer and value integer
     bool flag;
     cin >> t;
     while(t--)
     {
-        have[5] = have[10] = have[15] = 0;
+        fiv = ten = fif = 0;
         flag = true;
         cin >> n; 
         while(n--)
         {
-        		cin >> input;
-        		have[input]++;
-        		if(input == 10)
+        	cin >> input;
+        	if(input == 5)
+        	{
+        		fiv++;
+			}
+        	if(input == 10)
+        	{
+        		ten++;
+				if(fiv > 0)
         		{
-        			if(have[5] > 0)
-        			{
-        				have[5]--;
+        			fiv--;
+				}
+				else
+				{
+					cout << "NO";
+					flag = false;
+					break;
+					
+				}
+			}
+		}
+			if(input == 15)
+				{
+					fif++;
+					if(ten > 0)
+						ten--;
+					else
+					if(fiv > 1)
+					{
+						fiv = fiv - 2;
 					}
 					else
 					{
 						cout << "NO";
-						flag = false;
-						break;
-						
+    					flag = false;
+    					break;
 					}
 				}
-		}
-				/*if(input == 15)
-					{
-						have[2]++;
-						if(have[1] > 0)
-							have[1]--;
-						else
-						if(have[0] > 1)
-						{
-							have[0] = have[0] - 2;
-						}
-						else
-						{
-							cout << "NO";
-    						flag = false;
-    						break;
-						}
-					}*/
     	if(flag == true)
 		{
 			cout << "YES";	
